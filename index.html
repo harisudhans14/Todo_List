@@ -1,0 +1,230 @@
+
+<html>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <head>
+        <title>task 1</title>
+        <script>
+            var row=1;var n=1;var enmy=0;var x1=[],y1=[],z1=[];
+            function submitip(event)
+           {   
+             event.preventDefault();
+	            var x=document.getElementById("x").value;
+	           var y=document.getElementById("y").value;
+	           var z=document.getElementById("z").value;
+	           if(y==""||z=="")
+		         {
+			         alert("All Details must be filled");
+			         return false;
+	           }
+	           if(x.length<4)
+            {
+		           alert("player Name should be atlest have 4 characters");
+	           	 return false
+	          }
+	         	if(n==1)
+            { 
+	             var display = document.getElementById("disp");
+               var newRow =display.insertRow(row);
+               var cell0=newRow.insertCell(0);
+	             var cell1=newRow.insertCell(1);
+               var cell2=newRow.insertCell(2);
+               var cell3=newRow.insertCell(3);
+               cell0.innerHTML=row;
+	             cell1.innerHTML=x;
+               cell2.innerHTML=y;
+               cell3.innerHTML=z;
+		           n++;
+	            	x1[n-1]=x;
+               y1[n-1]=y;
+                z1[n-1]=z;
+            }
+            else 
+            {
+              for(var i=1;i<n;i++)
+	            {
+                if(x==x1[i]||z==z1[i])
+	            	 {
+	 		             enmy=true;
+                   break;
+		              }
+		            else
+		            {
+			             enmy=false;
+		            }
+	            }
+	           if(enmy)
+	            {         	 
+	              alert("Data already found \n enter differently!!!");
+	              return false;
+	            }
+             else
+              {  
+                 row++; 
+	               var display = document.getElementById("disp");
+                 var newRow =display.insertRow(row);
+                 var cell0=newRow.insertCell(0);
+	               var cell1=newRow.insertCell(1);
+                 var cell2=newRow.insertCell(2);
+                 var cell3=newRow.insertCell(3);
+                 cell0.innerHTML=row;
+	               cell1.innerHTML=x;
+                 cell2.innerHTML=y;
+                 cell3.innerHTML=z;
+                 n++;
+		             x1[n-1]=x;
+                 y1[n-1]=y;
+                 z1[n-1]=z;
+	             }
+            }
+               document.getElementById("x").value='';
+	             document.getElementById("y").value='';
+	             document.getElementById("z").value='';
+          	}
+            function remove(event)
+           {
+           	if(n==1)
+	          {
+		          alert("No Data Found!!!");
+	           	return false;
+	          } 
+	          else
+	          {
+	           event.preventDefault();
+	           document.getElementById("disp").deleteRow(row);
+            	x1.pop();
+	            y1.pop(); 
+            	z1.pop();
+             	n--;
+              row--; 
+	          if(row==0)
+	           {
+	           	row=1;
+	           }
+	         }  
+         }
+         </script> 
+  <style>
+           body
+           {
+             margin:0;
+             padding:0;
+             font-family:oswald;
+             background:url(img/hg1.jpg);
+             background-size:cover;
+           } 
+    
+    .new
+    {
+        width:700px;
+        height:600px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        color: black;
+        background:url(img/bg1.png);
+        border: 2px solid #818181;
+       }
+    .table
+    {
+      position: absolute;
+      top:48%;
+      left:37%;
+      background-color: white ;
+      color: #000000;
+      border-color: black;
+    }
+    table 
+    {
+       font-family:  sans-serif;
+       border-collapse: collapse;
+   }
+   td, th
+    {
+       border: 1px solid #dddddd;
+       text-align: left;
+     }
+
+tr:nth-child(even)
+ {
+  background-color: #dddddd;
+}
+    
+    fieldset
+    {
+      width:250px;
+      height:175px;
+      position:absolute;
+      top:25%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background-color: #ffdba6 ;
+    }
+    h2
+    {
+      text-align: center;
+    }
+    .btn
+     {
+       background-color: DodgerBlue;
+        border: none;
+        color: white;
+        padding: 6px 14px;
+        font-size: 10px;
+        cursor: pointer;
+     }
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+.ani
+{
+  border-color: black;
+  width: 100px;
+  height: 75px;
+  background: #fda7a7;
+  position: relative;
+  animation: mymove 10s infinite;
+}
+
+@keyframes mymove 
+{
+  from {top: 0px;left: 150px;}
+  to {top: 675px;left: 150px;}
+}
+
+       </style>
+    </head>
+  <body> 
+     <div class="ani">STAY HOME!!!.. Play Pubg!!!..</div>
+        <div class="new">
+         <h2 style=color:#8d1d01> Enrollment for Pubg League !!..</h2>
+         <form method ="post">
+            <fieldset>
+              <legend style=color:black>Enter details</legend>
+              <label for="x">Player Name:</label>
+              <input type="text" id="x"  placeholder="Player Name"  autocomplete="off" required autofocus required autofocus><br>
+              <label for="y">luckey weapon:</label><br>
+              <input type="text,number" id="y"  placeholder=" weapon Name" autocomplete="off" ><br>
+              <label for="z">E-Mail:</label><br>
+              <input type="email" id="z" placeholder="eail id" ><br><br>
+              <button onclick="return  submitip(event)" class="btn"><i class="fa fa-bars"></i>Add</button>
+              <button onclick="return  remove(event)" class="btn"><i class="fa fa-trash"></i>delete</button>
+            </fieldset>  
+           </form>
+         </div>
+            <div class="table">
+           <table style="width : 350px" border: 1  id="disp";>
+                     <tr>
+                         <th>S.NO</th>
+                         <th>Player Name</th>
+                         <th>lucky weapon</th> 
+                         <th>Email id</th>
+                     </tr>
+              </table>
+        </div>
+        <img src="img/pg1.png" alt="shedule"  transform=translate(-50%,-50%)  style="vertical-align:middle;margin:100px 1050px" width="300" height="250">
+        
+      
+    </body>
+</html>
